@@ -42,7 +42,7 @@ $record = $stmt->fetchAll(PDO::FETCH_ASSOC); //we are expecting ONLY one record,
     $stmt2 = $conn->prepare($sqlInsert);
     $stmt2->execute($arr2);
     $_SESSION['username'] = $_POST['username'];
-    header('Location: ../dash/index.php'); //redirecting to a new file
+    header('Location: ../dash/dash.php'); //redirecting to a new file
 }
 
 ?>
