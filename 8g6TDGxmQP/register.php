@@ -15,12 +15,14 @@ if (isset($_SESSION['username'])) {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+        <script src="../js/form-validation.js"></script>
         <link rel="stylesheet" type="text/css" href="../css/signin.css">
     </head>
     <body class="text-center">
         <div class="form-signin">
-            <h1 class='title'>Store 336</h1>
-            <form method="POST" action="register_process.php">
+            <h1 class='title'>Lordofthepickem</h1>
+            <form method="POST" action="register_process.php" name="registration">
                 <h1 class="h3 mb-3 font-weight-normal">Register</h1>
                 
                 <label for="username" class="sr-only">Username</label>
