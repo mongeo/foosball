@@ -26,9 +26,27 @@ if (!isset($_SESSION['username'])) {
                 <p class="lead">Welcome <?php echo $_SESSION['username'] ?>.</p>
                 <hr class="my-4">
                 <p class="text-center">
-                    <span class="lead">
-                        Item: <input type ="text" name="searchItem" id="searchItem"/><br/> 
-                    </span>
+                    <form id="choose_week" >
+                        <select name="choose_week" id="choose_week">
+                            <option value="Week 1">Week 1</option>
+                            <option value="Week 2">Week 2</option>
+                            <option value="Week 3">Week 3</option>
+                            <option value="Week 4">Week 4</option>
+                            <option value="Week 5">Week 5</option>
+                            <option value="Week 6">Week 6</option>
+                            <option value="Week 7">Week 7</option>
+                            <option value="Week 8">Week 8</option>
+                            <option value="Week 9">Week 9</option>
+                            <option value="Week 10">Week 10</option>
+                            <option value="Week 11">Week 11</option>
+                            <option value="Week 12">Week 12</option>
+                            <option value="Week 13">Week 13</option>
+                            <option value="Week 14">Week 14</option>
+                            <option value="Week 15">Week 15</option>
+                            <option value="Week 16">Week 16</option>
+                            <option value="Week 17">Week 17</option>
+                        </select>
+                    </form>
                 </p>
             </div>
             <div id="itemView" class="text-left"></div>
