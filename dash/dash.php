@@ -17,6 +17,7 @@ if (!isset($_SESSION['username'])) {
         <script>
             //var cur_time = moment().format("ddd. MM/DD/YYYY @ h:mm A");
             var cur_time = moment();
+            var cTime = cur_time.tz('America/New_York').format('YYYY-MM-DD HH:MM:SS');
             var cur_time_est = cur_time.tz('America/New_York').format('ddd. DD/MM/YYYY h:mm:ss A');
         </script>
         <title>Welcome</title>
@@ -24,12 +25,16 @@ if (!isset($_SESSION['username'])) {
     </head>
     
     <body class="text-center">
-            <!--<h1 class='title'>Welcome <?php echo $_SESSION['username'] ?>!</h1>
-            <p>Stay tuned. More to come soon.</p>
-            <a class="nav-link" href="../8g6TDGxmQP/signout_process.php">Sign out</a>-->
         <div class="container">
+            <nav>
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../8g6TDGxmQP/signout_process.php">Sign out</a>
+                    </li>
+                </ul>
+            </nav>
             <div class="jumbotron">
-                <h1 class="display-4 text-center">NFL Pick'em</h1>
+                <h1 class="display-4 text-center">Lord of the Pick'em</h1>
                 <p class="lead">Welcome <?php echo $_SESSION['username'] ?>.</p>
                 <hr class="my-4">
                 <div id="client_time"></div>
@@ -67,7 +72,7 @@ if (!isset($_SESSION['username'])) {
             $("#choose_week_drop").change(function() {
                 var selection = $("#choose_week_drop").val().split(" ");
                 var week_int = selection[1];
-                console.log(week_int);
+                //console.log(week_int);
                 $.ajax({
                     method: "GET",
                     url: "../api/games_by_week.php",
@@ -78,43 +83,87 @@ if (!isset($_SESSION['username'])) {
                     success: function(data, status) {
                         var home_team_data = "";
 
-                        //console.log(data["teams"]);
+                        console.log(data);
+                        //console.log(data["user_games"]);
                         let itemStr = "";
                         data["games"].forEach(function(key1) {
+
+                            //Date row
                             itemStr += "<div class='row'>";
+
+                            //Date col
                             itemStr += "<div class='col-12 text-center'>";
-
                             var game_time = moment(key1['date_time']).format("ddd. MM/DD/YYYY @ h:mm A");
-
                             itemStr += "<h3>" + game_time + " (EST)</h3>";
+                            itemStr += "</div>";
+                            //EndDate col
 
                             itemStr += "</div>";
+                            //End Date row
+                            
+                            //Team row
+                            itemStr += "<div class='row'>";
 
+                            //HomeTeam col
                             itemStr += "<div class='col-6 text-center'>";
                             $.each( data["teams"], function( key2, value ){
                                 if (value.team_id === key1['home_team']){
                                     itemStr += "<br><b>Home</b></br>";
                                     itemStr += "<img src='" + value.icon_url +"' height='75'><br>";
                                     itemStr += value.full_name + " (" + value.team_id + ")<br>";
-                                    itemStr += "<button class='btn btn-primary'>Pick</button>";
+                                    console.log("cTime: " + cTime + " | databaseTime: " + key1['date_time']);
+                                    if (cTime < key1['date_time']){
+                                        itemStr += "<button class='btn btn-primary'>Pick</button>";
+                                    }
+                                    
                                 }
                             });
                             itemStr += "</div>";
+                            //End HomeTeam col
 
+                            //AwayTeam col
                             itemStr += "<div class='col-6 text-center'>";
                             $.each( data["teams"], function( key2, value ){
                                 if (value.team_id === key1['away_team']){
                                     itemStr += "<br><b>Away</b></br>";
                                     itemStr += "<img src='" + value.icon_url +"' height='75'><br>";
                                     itemStr += value.full_name + " (" + value.team_id + ")<br>";
-                                    itemStr += "<button class='btn btn-primary'>Pick</button>";
-
+                                    if (cTime < key1['date_time']){
+                                        itemStr += "<button class='btn btn-primary'>Pick</button>";
+                                    }
                                 }
 
                             });
                             itemStr += "</div>";
-                            itemStr += "<div class='col-12 text-center'><br><b>Winner: "+key1['winner'] +"</b></div>";
+                            //End AwayTeam col
+
+                            itemStr += "</div>";
+                            //End Team row
+
+
+
+                            //Results row
+                            itemStr += "<div class='row'>";
+
+                            //Users current pick col
+                            itemStr += "<div class='col-12 text-center'>";
+                            itemStr += "<b>Your pick:</b> ";
+                            $.each(data["user_games"], function( key2, value ){
+                                if (value.game_key === key1['game_id']){
+                                    itemStr += value.pick;
+                                }
+                            });
+                            itemStr += "</div>";
+                            //End Users current pick col
+
+                            //Winner col
+                            itemStr += "<div class='col-12 text-center'>";
+                            itemStr += "<b>Winner:</b> "+key1['winner'];
+                            itemStr += "</div>";
+                            //End Winner col
+
                             itemStr += "</div><hr>";
+                            //End Results row
                         });
 
                         $("#itemView").html(itemStr); 
