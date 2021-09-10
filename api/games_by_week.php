@@ -2,10 +2,23 @@
 include '../inc/dbConnection.php';
 $conn = getDatabaseConnection("nfl_picks");
 
-$sql = "SELECT * FROM games WHERE week=1 ORDER BY date_time";
+$w = $_GET['week'];
 
-$stmt = $conn->prepare($sql);
-$stmt->execute();
-$records = $stmt->fetchAll(PDO::FETCH_ASSOC);
-echo json_encode($records);
+$arr = array();
+
+$sql1 = "SELECT * FROM games WHERE week = $w ORDER BY date_time";
+
+$stmt1 = $conn->prepare($sql1);
+$stmt1->execute();
+$games = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+$arr['games'] = $games;
+
+
+$sql2 = "SELECT * FROM teams";
+$stmt2 = $conn->prepare($sql2);
+$stmt2->execute();
+$teams = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+$arr['teams'] = $teams;
+
+echo json_encode($arr);
 ?>

@@ -12,8 +12,15 @@ if (!isset($_SESSION['username'])) {
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="../js/moment.js"></script>
+        <script src="../js/moment-timezone-with-data.js"></script>
+        <script>
+            //var cur_time = moment().format("ddd. MM/DD/YYYY @ h:mm A");
+            var cur_time = moment();
+            var cur_time_est = cur_time.tz('America/New_York').format('ddd. DD/MM/YYYY h:mm:ss A');
+        </script>
         <title>Welcome</title>
+
     </head>
     
     <body class="text-center">
@@ -25,9 +32,10 @@ if (!isset($_SESSION['username'])) {
                 <h1 class="display-4 text-center">NFL Pick'em</h1>
                 <p class="lead">Welcome <?php echo $_SESSION['username'] ?>.</p>
                 <hr class="my-4">
+                <div id="client_time"></div>
                 <p class="text-center">
-                    <form id="choose_week" >
-                        <select name="choose_week" id="choose_week">
+                    <form id="choose_week">
+                        <select name="choose_week_drop" id="choose_week_drop">
                             <option value="Week 1">Week 1</option>
                             <option value="Week 2">Week 2</option>
                             <option value="Week 3">Week 3</option>
@@ -54,40 +62,70 @@ if (!isset($_SESSION['username'])) {
         <!--</div>-->
     </body>
     <script>
-        //TODO: List all items
-        $.ajax({
-            method: "GET",
-            url: "../api/games_by_week.php",
-            dataType: "json",
-            data: {
-                "week": 1
-                },
-            success: function(data, status) {
-                // console.log(data);
+        //TODO:
+        $(function() {
+            $("#choose_week_drop").change(function() {
+                var selection = $("#choose_week_drop").val().split(" ");
+                var week_int = selection[1];
+                console.log(week_int);
+                $.ajax({
+                    method: "GET",
+                    url: "../api/games_by_week.php",
+                    dataType: "json",
+                    data: {
+                        "week": week_int
+                        },  
+                    success: function(data, status) {
+                        var home_team_data = "";
 
-                //<div class='card-columns'>
-               let itemStr = "<div class='card-columns'>";
-               //itemStr = "<div class='card-group'>"
-               data.forEach(function(key) {
-                    itemStr += "<div class='card' style='width: 18rem;'>";
-                    itemStr +=      "<div class='card-body'>";
-                    itemStr +=          "<h5 class='card-title'>Game ID"+ key['game_id'] +"</h5>";
-                    itemStr +=      "</div>";
-                    itemStr +=      "<ul class='list-group list-group-flush'>";
-                    itemStr +=          "<li class='list-group-item'>Season: "+key['season'] +"</li>";
-                    itemStr +=          "<li class='list-group-item'>Week: "+key['week'] +"</li>";
-                    itemStr +=          "<li class='list-group-item'>Date: "+key['date_time'] +"</li>";
-                    itemStr +=          "<li class='list-group-item'>Home: "+key['home_team'] +"<br><button type='button' class='btn btn-primary'>Pick</button></li>";
-                    itemStr +=          "<li class='list-group-item'>Away: "+key['away_team'] +"<br><button type='button' class='btn btn-primary'>Pick</button></li>";
-                    itemStr +=          "<li class='list-group-item'>Winner: "+key['winner'] +"</li>";
-                    itemStr +=      "</ul>";
-                    itemStr += "</div>";
-                });
-                itemStr += "</div>"
-                $("#itemView").html(itemStr);
+                        //console.log(data["teams"]);
+                        let itemStr = "";
+                        data["games"].forEach(function(key1) {
+                            itemStr += "<div class='row'>";
+                            itemStr += "<div class='col-12 text-center'>";
 
-                
-            }
-        }); //ajax 
+                            var game_time = moment(key1['date_time']).format("ddd. MM/DD/YYYY @ h:mm A");
+
+                            itemStr += "<h3>" + game_time + " (EST)</h3>";
+
+                            itemStr += "</div>";
+
+                            itemStr += "<div class='col-6 text-center'>";
+                            $.each( data["teams"], function( key2, value ){
+                                if (value.team_id === key1['home_team']){
+                                    itemStr += "<br><b>Home</b></br>";
+                                    itemStr += "<img src='" + value.icon_url +"' height='75'><br>";
+                                    itemStr += value.full_name + " (" + value.team_id + ")<br>";
+                                    itemStr += "<button class='btn btn-primary'>Pick</button>";
+                                }
+                            });
+                            itemStr += "</div>";
+
+                            itemStr += "<div class='col-6 text-center'>";
+                            $.each( data["teams"], function( key2, value ){
+                                if (value.team_id === key1['away_team']){
+                                    itemStr += "<br><b>Away</b></br>";
+                                    itemStr += "<img src='" + value.icon_url +"' height='75'><br>";
+                                    itemStr += value.full_name + " (" + value.team_id + ")<br>";
+                                    itemStr += "<button class='btn btn-primary'>Pick</button>";
+
+                                }
+
+                            });
+                            itemStr += "</div>";
+                            itemStr += "<div class='col-12 text-center'><br><b>Winner: "+key1['winner'] +"</b></div>";
+                            itemStr += "</div><hr>";
+                        });
+
+                        $("#itemView").html(itemStr); 
+                    }
+                }); //ajax 
+            }).triggerHandler('change');
+        });
+
+        var cur_time_str = "<strong>Your time</strong><br>";
+        cur_time_str += cur_time_est + " (EST)";
+        $("#client_time").html(cur_time_str);
+
     </script>
 </html>
