@@ -67,19 +67,40 @@ if (!isset($_SESSION['username'])) {
         <!--</div>-->
     </body>
     <script>
+
+        function pickTeam(gameID, league, season, week, dateTime, homeTeam, awayTeam, gamePick){
+            $.ajax({
+                method: "GET",
+                url: "../api/pick_team.php",
+                dataType: "json",
+                data: {
+                    "game_key": gameID,
+                    "league": league,
+                    "season": season,
+                    "week": week, 
+                    "date_time": dateTime,
+                    "home_team": homeTeam,
+                    "away_team": awayTeam,
+                    "pick": gamePick
+                },  
+                success: function(data, status) {
+                    $("#"+ gameID + "_pick").html(data);
+                }
+            }); //ajax 
+        };
         //TODO:
         $(function() {
             $("#choose_week_drop").change(function() {
                 var selection = $("#choose_week_drop").val().split(" ");
                 var week_int = selection[1];
-                //console.log(week_int);
+                console.log(week_int);
                 $.ajax({
                     method: "GET",
                     url: "../api/games_by_week.php",
                     dataType: "json",
                     data: {
                         "week": week_int
-                        },  
+                    },  
                     success: function(data, status) {
                         var home_team_data = "";
 
@@ -113,9 +134,17 @@ if (!isset($_SESSION['username'])) {
                                     itemStr += value.full_name + " (" + value.team_id + ")<br>";
                                     console.log("cTime: " + cTime + " | databaseTime: " + key1['date_time']);
                                     if (cTime < key1['date_time']){
-                                        itemStr += "<button class='btn btn-primary'>Pick</button>";
+                                        itemStr += "<button class='btn btn-primary' onclick=\"pickTeam("; 
+                                        itemStr += "'" + key1['game_id'] + "', ";
+                                        itemStr += "'2021', ";
+                                        itemStr += "'" + key1['season'] + "', ";
+                                        itemStr += "'" + key1['week'] + "', ";
+                                        itemStr += "'" + key1['date_time'] + "', ";
+                                        itemStr += "'" + key1['home_team'] + "', ";
+                                        itemStr += "'" + key1['away_team'] + "', ";
+                                        itemStr += "'" + key1['home_team'];
+                                        itemStr += "')\">Pick</button>";
                                     }
-                                    
                                 }
                             });
                             itemStr += "</div>";
@@ -129,7 +158,16 @@ if (!isset($_SESSION['username'])) {
                                     itemStr += "<img src='" + value.icon_url +"' height='75'><br>";
                                     itemStr += value.full_name + " (" + value.team_id + ")<br>";
                                     if (cTime < key1['date_time']){
-                                        itemStr += "<button class='btn btn-primary'>Pick</button>";
+                                        itemStr += "<button class='btn btn-primary' onclick=\"pickTeam("; 
+                                        itemStr += "'" + key1['game_id'] + "', ";
+                                        itemStr += "'2021', ";
+                                        itemStr += "'" + key1['season'] + "', ";
+                                        itemStr += "'" + key1['week'] + "', ";
+                                        itemStr += "'" + key1['date_time'] + "', ";
+                                        itemStr += "'" + key1['home_team'] + "', ";
+                                        itemStr += "'" + key1['away_team'] + "', ";
+                                        itemStr += "'" + key1['away_team'];
+                                        itemStr += "')\">Pick</button>";
                                     }
                                 }
 
@@ -147,12 +185,15 @@ if (!isset($_SESSION['username'])) {
 
                             //Users current pick col
                             itemStr += "<div class='col-12 text-center'>";
-                            itemStr += "<b>Your pick:</b> ";
+                            itemStr += "<b>Your pick:</b> <span id='";
+                            itemStr += key1['game_id'] + "_pick";
+                            itemStr += "'>";
                             $.each(data["user_games"], function( key2, value ){
                                 if (value.game_key === key1['game_id']){
                                     itemStr += value.pick;
                                 }
                             });
+                            itemStr += "</span>";
                             itemStr += "</div>";
                             //End Users current pick col
 
@@ -175,6 +216,5 @@ if (!isset($_SESSION['username'])) {
         var cur_time_str = "<strong>Your time</strong><br>";
         cur_time_str += cur_time_est + " (EST)";
         $("#client_time").html(cur_time_str);
-
     </script>
 </html>
