@@ -1,11 +1,3 @@
-<?php
-session_start();
-
-//checks whether user has logged in
-if (isset($_SESSION['username'])) {
-    header('location: 8g6TDGxmQP/home.php'); //sends users to login screen if they haven't logged in
-}
-?>
 <!DOCTYPE html>
 <html>
     <head>
