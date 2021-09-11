@@ -19,7 +19,7 @@ if (isset($_SESSION['username'])) {
     
     <body class="text-center">
         <div class="form-signin">
-            <h1 class='title'>Football Picks</h1>
+            <h1 class='title'>Lord of the<br> Pick 'em</h1>
             <form method="POST" action="sign_in_process.php">
               <img class="mb-4" src="../img/football-icon1.svg" alt="" width="72" height="72">
               <h1 class="h3 mb-3 font-weight-normal">Please sign in:</h1>
