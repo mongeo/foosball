@@ -37,7 +37,7 @@ if (!isset($_SESSION['username'])) {
             <nav>
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
-                        <u><a class="nav-link" href="../8g6TDGxmQP/signout_process.php">Sign out</a></u>
+                        <u><a class="nav-link" href="api/signout_process.php">Sign out</a></u>
                     </li>
                 </ul>
             </nav>
@@ -80,7 +80,7 @@ if (!isset($_SESSION['username'])) {
         function pickTeam(gameID, league, season, week, dateTime, homeTeam, awayTeam, gamePick){
             $.ajax({
                 method: "GET",
-                url: "../api/pick_team.php",
+                url: "api/pick_team.php",
                 dataType: "json",
                 data: {
                     "game_key": gameID,
@@ -112,7 +112,7 @@ if (!isset($_SESSION['username'])) {
                 console.log(week_int);
                 $.ajax({
                     method: "GET",
-                    url: "../api/games_by_week.php",
+                    url: "api/games_by_week.php",
                     dataType: "json",
                     data: {
                         "week": week_int
