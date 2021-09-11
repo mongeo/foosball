@@ -85,6 +85,13 @@ if (!isset($_SESSION['username'])) {
                 },  
                 success: function(data, status) {
                     $("#"+ gameID + "_pick").html(data);
+                    if (gamePick === homeTeam){
+                        $("#"+gameID+"_home").css({"border-style":"solid","border-color":"#339955"})
+                        $("#"+gameID+"_away").css({"border-style":"none"})
+                    } else {
+                        $("#"+gameID+"_away").css({"border-style":"solid","border-color":"#339955"})
+                        $("#"+gameID+"_home").css({"border-style":"none"})
+                    }
                 }
             }); //ajax 
         };
@@ -126,7 +133,7 @@ if (!isset($_SESSION['username'])) {
                             itemStr += "<div class='row'>";
 
                             //HomeTeam col
-                            itemStr += "<div class='col-6 text-center'>";
+                            itemStr += "<div class='col-6 text-center' id='" + key1['game_id'] + "_home'>";
                             $.each( data["teams"], function( key2, value ){
                                 if (value.team_id === key1['home_team']){
                                     itemStr += "<br><b>Home</b></br>";
@@ -143,7 +150,7 @@ if (!isset($_SESSION['username'])) {
                                         itemStr += "'" + key1['home_team'] + "', ";
                                         itemStr += "'" + key1['away_team'] + "', ";
                                         itemStr += "'" + key1['home_team'];
-                                        itemStr += "')\">Pick</button>";
+                                        itemStr += "')\">Pick</button><br><br>";
                                     }
                                 }
                             });
@@ -151,7 +158,7 @@ if (!isset($_SESSION['username'])) {
                             //End HomeTeam col
 
                             //AwayTeam col
-                            itemStr += "<div class='col-6 text-center'>";
+                            itemStr += "<div class='col-6 text-center' id='" + key1['game_id'] + "_away'>";
                             $.each( data["teams"], function( key2, value ){
                                 if (value.team_id === key1['away_team']){
                                     itemStr += "<br><b>Away</b></br>";
@@ -167,10 +174,9 @@ if (!isset($_SESSION['username'])) {
                                         itemStr += "'" + key1['home_team'] + "', ";
                                         itemStr += "'" + key1['away_team'] + "', ";
                                         itemStr += "'" + key1['away_team'];
-                                        itemStr += "')\">Pick</button>";
+                                        itemStr += "')\">Pick</button><br><br>";
                                     }
                                 }
-
                             });
                             itemStr += "</div>";
                             //End AwayTeam col
@@ -206,8 +212,18 @@ if (!isset($_SESSION['username'])) {
                             itemStr += "</div><hr>";
                             //End Results row
                         });
-
                         $("#itemView").html(itemStr); 
+                        $.each(data["user_games"], function( key2, value ){
+                            if (value.home_team === value.pick){
+                                $("#"+value.game_key+"_home").css({"border-style":"solid","border-color":"#339955"});
+                                $("#"+value.game_key+"_away").css({"border-style":"none"});
+                                console.log("@");
+                            } else {
+                                $("#"+value.game_key+"_away").css({"border-style":"solid","border-color":"#339955"});
+                                $("#"+value.game_key+"_home").css({"border-style":"none"});
+                                console.log("#");
+                            }
+                        });
                     }
                 }); //ajax 
             }).triggerHandler('change');
