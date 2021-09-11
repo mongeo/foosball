@@ -20,6 +20,25 @@ if (!isset($_SESSION['username'])) {
             var cTime = cur_time.tz('America/New_York').format('YYYY-MM-DD HH:MM:SS');
             var cur_time_est = cur_time.tz('America/New_York').format('ddd. DD/MM/YYYY h:mm:ss A');
         </script>
+        <!--
+        <style>
+            body {
+                background-color: #1d4837;
+                color: #CCC;
+            }
+            .jumbotron {
+                background-color: #122c22;
+                color: #EEE;
+                border-color: #FFF;
+            }
+
+            hr {
+                background-color: #AAA; 
+                height: 1px; 
+                border: 0; 
+            }
+        </style>
+    -->
         <title>Welcome</title>
 
     </head>
@@ -36,7 +55,7 @@ if (!isset($_SESSION['username'])) {
             <div class="jumbotron">
                 <h1 class="display-4 text-center">Lord of the Pick'em</h1>
                 <p class="lead">Welcome <?php echo $_SESSION['username'] ?>.</p>
-                <hr class="my-4">
+                <hr class="my-4" style>
                 <div id="client_time"></div>
                 <p class="text-center">
                     <form id="choose_week">
@@ -63,6 +82,7 @@ if (!isset($_SESSION['username'])) {
                 </p>
             </div>
             <div id="itemView" class="text-left"></div>
+            <div id="help"><p>For questions or comments contact: <a href="mailto:nfl_admin@lordofthepickem.com">nfl_admin@lordofthepickem.com</a>.</p></div>
         </div><!--container-->
         <!--</div>-->
     </body>
