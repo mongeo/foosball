@@ -38,6 +38,12 @@ if (!isset($_SESSION['username'])) {
             <nav>
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
+                        <u><a class="nav-link disabled" href="#">Dashboard</a></u>
+                    </li>
+                    <li class="nav-item">
+                        <u><a class="nav-link" href="leaderboard.php">Leaderboard</a></u>
+                    </li>
+                    <li class="nav-item">
                         <u><a class="nav-link" href="api/signout_process.php">Sign out</a></u>
                     </li>
                 </ul>
@@ -112,7 +118,7 @@ if (!isset($_SESSION['username'])) {
                 var selection = $("#choose_week_drop").val().split(" ");
                 var week_int = selection[1];
                 selected_week = week_int;
-                console.log(selected_week);
+                //console.log(selected_week);
                 $.ajax({
                     method: "GET",
                     url: "api/games_by_week.php",
