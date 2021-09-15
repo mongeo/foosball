@@ -22,6 +22,7 @@ if (!isset($_SESSION['username'])) {
             var cur_time = moment();
             var cTime = cur_time.tz('America/New_York').format('YYYY-MM-DD HH:MM:SS');
             var cur_time_est = cur_time.tz('America/New_York').format('ddd. DD/MM/YYYY h:mm:ss A');
+            var selected_week = 1;
         </script>
         <style>
             body {
@@ -46,6 +47,7 @@ if (!isset($_SESSION['username'])) {
                 <p class="lead">Welcome <?php echo $_SESSION['username'] ?>.</p>
                 <hr class="my-4" style>
                 <div id="client_time"></div>
+                <div id="week_results"></div>
                 <p class="text-center">
                     <form id="choose_week">
                         <select name="choose_week_drop" id="choose_week_drop">
@@ -109,7 +111,8 @@ if (!isset($_SESSION['username'])) {
             $("#choose_week_drop").change(function() {
                 var selection = $("#choose_week_drop").val().split(" ");
                 var week_int = selection[1];
-                console.log(week_int);
+                selected_week = week_int;
+                console.log(selected_week);
                 $.ajax({
                     method: "GET",
                     url: "api/games_by_week.php",
@@ -119,12 +122,14 @@ if (!isset($_SESSION['username'])) {
                     },  
                     success: function(data, status) {
                         var home_team_data = "";
+                        var number_of_games = 0;
+                        var number_of_wins = 0;
 
-                        console.log(data);
+                        //console.log(data);
                         //console.log(data["user_games"]);
                         let itemStr = "";
                         data["games"].forEach(function(key1) {
-
+                            number_of_games++;
                             //Date row
                             itemStr += "<div class='row'>";
 
@@ -148,7 +153,7 @@ if (!isset($_SESSION['username'])) {
                                     itemStr += "<br><b>Home</b></br>";
                                     itemStr += "<img src='" + value.icon_url +"' height='75'><br>";
                                     itemStr += value.full_name + " (" + value.team_id + ")<br><br>";
-                                    console.log("cTime: " + cTime + " | databaseTime: " + key1['date_time']);
+                                    //console.log("cTime: " + cTime + " | databaseTime: " + key1['date_time']);
                                     if (cTime < key1['date_time']){
                                         itemStr += "<button class='btn btn-primary' onclick=\"pickTeam("; 
                                         itemStr += "'" + key1['game_id'] + "', ";
@@ -206,6 +211,9 @@ if (!isset($_SESSION['username'])) {
                             $.each(data["user_games"], function( key2, value ){
                                 if (value.game_key === key1['game_id']){
                                     itemStr += value.pick;
+                                    if (value.result == 'W'){
+                                        number_of_wins++;
+                                    }
                                 }
                             });
                             itemStr += "</span>";
@@ -214,23 +222,26 @@ if (!isset($_SESSION['username'])) {
 
                             //Winner col
                             itemStr += "<div class='col-12 text-center'>";
-                            itemStr += "<b>Winner:</b> "+key1['winner'];
+                            itemStr += "<b>Winner:</b> "+ key1['winner'];
                             itemStr += "</div>";
                             //End Winner col
 
                             itemStr += "</div><hr>";
                             //End Results row
                         });
+                        var weeks_score_str = "<br>";
+                        weeks_score_str += "<b>Week " + selected_week + " Stats:</b><br>";
+                        weeks_score_str += "Wins: " + number_of_wins + " / Total games: " + number_of_games + "<br>";
+                        $("#week_results").html(weeks_score_str);
+
                         $("#itemView").html(itemStr); 
                         $.each(data["user_games"], function( key2, value ){
                             if (value.home_team === value.pick){
                                 $("#"+value.game_key+"_home").css({"border-style":"solid","border-color":"#339955"});
                                 $("#"+value.game_key+"_away").css({"border-style":"none"});
-                                console.log("@");
                             } else {
                                 $("#"+value.game_key+"_away").css({"border-style":"solid","border-color":"#339955"});
                                 $("#"+value.game_key+"_home").css({"border-style":"none"});
-                                console.log("#");
                             }
                         });
                     }
