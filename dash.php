@@ -21,7 +21,7 @@ if (!isset($_SESSION['username'])) {
             //var cur_time = moment().format("ddd. MM/DD/YYYY @ h:mm A");
             var cur_time = moment();
             var cTime = cur_time.tz('America/New_York').format('YYYY-MM-DD HH:MM:SS');
-            var cur_time_est = cur_time.tz('America/New_York').format('ddd. DD/MM/YYYY h:mm:ss A');
+            var cur_time_est = cur_time.tz('America/New_York').format('ddd. MM/DD/YYYY h:mm:ss A');
             var selected_week = 1;
         </script>
         <style>

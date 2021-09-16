@@ -2,3 +2,4 @@
 [11-Sep-2021 21:01:33 UTC] PHP Warning:  Undefined array key "password" in /home/pccclcykkip4/public_html/foosball/api/sign_in_process.php on line 11
 [12-Sep-2021 04:40:10 UTC] PHP Warning:  Undefined array key "username" in /home/pccclcykkip4/public_html/foosball/api/sign_in_process.php on line 10
 [12-Sep-2021 04:40:10 UTC] PHP Warning:  Undefined array key "password" in /home/pccclcykkip4/public_html/foosball/api/sign_in_process.php on line 11
+[16-Sep-2021 01:02:12 UTC] PHP Warning:  Undefined array key "username" in /home/pccclcykkip4/public_html/foosball/api/games_by_week.php on line 7
