@@ -75,32 +75,38 @@ if (!isset($_SESSION['username'])) {
                     //console.log(data["wins_by_week"]);
                     let itemStr = "";
 
-                    //
-                    itemStr += "<div class='row'>";
 
-                    //
-                    itemStr += "<div class='col-6 text-left'><b>Username</b>";
-                    itemStr += "</div>";
-                    itemStr += "<div class='col-3 text-center'><b>Wins</b>";
-                    itemStr += "</div>";
-                    itemStr += "<div class='col-3 text-center'><b>Week</b>";
-                    itemStr += "</div>";
-                    //
 
                     itemStr += "</div>";
-                    //
-
-                    itemStr += "</div>";
+                    var cur_week = 0;
                     data["wins_by_week"].forEach(function(key) {
+                        if (key.week > cur_week){   
+                            itemStr += "<div class='row' id='week_" + key.week + "'>";
+                            cur_week++;
+                            itemStr += "<div class='col-12 text-center'>";
+                            itemStr += "<h2>Week " + key.week + "</h2>";
+                            itemStr += "</div>";
+                            itemStr += "</div>";
+                            //
+                            itemStr += "<div class='row'>";
+
+                            //
+                            itemStr += "<div class='col-6 text-left'><b>Username</b>";
+                            itemStr += "</div>";
+                            itemStr += "<div class='col-6 text-center'><b>Wins</b>";
+                            itemStr += "</div>";
+                            //
+
+                            itemStr += "</div>";
+                            //
+                        }
                         //Date row
                         itemStr += "<div class='row  border-bottom'>";
 
                         //Date col
                         itemStr += "<div class='col-6 text-left'>" + key.username;
                         itemStr += "</div>";
-                        itemStr += "<div class='col-3 text-center'>" + key.wins;
-                        itemStr += "</div>";
-                        itemStr += "<div class='col-3 text-center'>" + key.week;
+                        itemStr += "<div class='col-6 text-center'>" + key.wins;
                         itemStr += "</div>";
                         //EndDate col
 
