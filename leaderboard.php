@@ -74,14 +74,46 @@ if (!isset($_SESSION['username'])) {
                     //console.log(data);
                     //console.log(data["wins_by_week"]);
                     let itemStr = "";
-
-
-
-                    itemStr += "</div>";
                     var cur_week = 0;
+
+
+                    itemStr += "<div class='row' id='total_wins'>";
+                    itemStr += "<div class='col-12 text-center'>";
+                    itemStr += "<h2>Total Wins</h2>";
+                    itemStr += "</div>";
+                    itemStr += "</div>";
+
+                    //
+                    itemStr += "<div class='row'>";
+
+                    //
+                    itemStr += "<div class='col-6 text-left'><b>Username</b>";
+                    itemStr += "</div>";
+                    itemStr += "<div class='col-6 text-center'><b>Wins</b>";
+                    itemStr += "</div>";
+                    //
+                    itemStr += "</div>";
+
+
+                    
+                    data["total_wins"].forEach(function(key) {
+                        itemStr += "<div class='row border-bottom'>";
+
+                        //Date col
+                        itemStr += "<div class='col-6 text-left'>" + key.username;
+                        itemStr += "</div>";
+                        itemStr += "<div class='col-6 text-center'>" + key.wins;
+                        itemStr += "</div>";
+                        //EndDate col   
+
+                        itemStr += "</div>";                     
+                       
+                    });
+                    
+
                     data["wins_by_week"].forEach(function(key) {
                         if (key.week > cur_week){   
-                            itemStr += "<div class='row' id='week_" + key.week + "'>";
+                            itemStr += "<br><div class='row' id='week_" + key.week + "'>";
                             cur_week++;
                             itemStr += "<div class='col-12 text-center'>";
                             itemStr += "<h2>Week " + key.week + "</h2>";
@@ -101,7 +133,7 @@ if (!isset($_SESSION['username'])) {
                             //
                         }
                         //Date row
-                        itemStr += "<div class='row  border-bottom'>";
+                        itemStr += "<div class='row border-bottom'>";
 
                         //Date col
                         itemStr += "<div class='col-6 text-left'>" + key.username;

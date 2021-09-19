@@ -12,7 +12,7 @@ $sql1 = "SELECT COUNT(*) as wins, username FROM `user_games` WHERE user_games.re
 $stmt1 = $conn->prepare($sql1);
 $stmt1->execute();
 $total_wins = $stmt1->fetchAll(PDO::FETCH_ASSOC);
-$arr['total_games'] = $total_wins;
+$arr['total_wins'] = $total_wins;
 
 
 $sql2 = "SELECT username, week, COUNT(*) as wins FROM `user_games` WHERE user_games.result = 'W' GROUP BY username, week ORDER BY wins DESC, week ASC";
