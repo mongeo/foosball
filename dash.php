@@ -54,7 +54,8 @@ if (!isset($_SESSION['username'])) {
                 <hr class="my-4" style>
                 <div id="client_time"></div>
                 <div id="week_results"></div>
-                <p class="text-center">
+
+                <div class="text-center">
                     <form id="choose_week">
                         <select name="choose_week_drop" id="choose_week_drop">
                             <option value="Week 1">Week 1</option>
@@ -76,7 +77,9 @@ if (!isset($_SESSION['username'])) {
                             <option value="Week 17">Week 17</option>
                         </select>
                     </form>
-                </p>
+                    <br>
+                </div>
+                <div id="week_msg">Have suggestions for new features or comments? Click <a href="https://forms.gle/tjxVBs3nAuRtd7aY6" target="_blank">here</a>.</div>
             </div>
             <div id="itemView" class="text-left"></div>
             <div id="help"><p>For questions or comments contact: <a href="mailto:nfl_admin@lordofthepickem.com">nfl_admin@lordofthepickem.com</a>.</p></div>
