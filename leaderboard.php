@@ -76,6 +76,38 @@ if (!isset($_SESSION['username'])) {
                     let itemStr = "";
                     var cur_week = 0;
 
+                    itemStr += "<div class='row' id='balance'>";
+                    itemStr += "<div class='col-12 text-center'>";
+                    itemStr += "<h2>User Balance</h2>";
+                    itemStr += "</div>";
+                    itemStr += "</div>";
+
+                    //
+                    itemStr += "<div class='row'>";
+
+                    //
+                    itemStr += "<div class='col-6 text-left'><b>Username</b>";
+                    itemStr += "</div>";
+                    itemStr += "<div class='col-6 text-center'><b>Balance</b>";
+                    itemStr += "</div>";
+                    //
+                    itemStr += "</div>";
+
+
+                    
+                    data["balance"].forEach(function(key) {
+                        itemStr += "<div class='row border-bottom'>";
+
+                        //Date col
+                        itemStr += "<div class='col-6 text-left'>" + key.username;
+                        itemStr += "</div>";
+                        itemStr += "<div class='col-6 text-center'>$" + key.balance;
+                        itemStr += "</div>";
+                        //EndDate col   
+
+                        itemStr += "</div>";                     
+                       
+                    });
 
                     itemStr += "<div class='row' id='total_wins'>";
                     itemStr += "<div class='col-12 text-center'>";

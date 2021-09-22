@@ -21,6 +21,12 @@ $stmt2->execute();
 $wins_by_week = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 $arr['wins_by_week'] = $wins_by_week;
 
+$sql3 = "SELECT * FROM `users` ORDER BY balance DESC";
+$stmt3 = $conn->prepare($sql3);
+$stmt3->execute();
+$balance = $stmt3->fetchAll(PDO::FETCH_ASSOC);
+$arr['balance'] = $balance;
+
 
 echo json_encode($arr);
 ?>
