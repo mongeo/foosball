@@ -84,8 +84,10 @@ if (!isset($_SESSION['username'])) {
                 <div id="week_msg">Have suggestions for new features or comments? Click <a href="https://forms.gle/tjxVBs3nAuRtd7aY6" target="_blank">here</a>.</div>
             </div>
             <div id="itemView" class="text-left"></div>
+            <br>
             <div id="fun" class="text-center"><img src="https://c.tenor.com/nTfGANr9MlAAAAAi/lord-of-the-rings-my-precious.gif" width="15%">
             </div>
+            <br>
             <div id="help"><p>For questions or comments contact: <a href="mailto:nfl_admin@lordofthepickem.com">nfl_admin@lordofthepickem.com</a>.</p></div>
         </div><!--container-->
         <!--</div>-->

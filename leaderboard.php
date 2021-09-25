@@ -53,7 +53,7 @@ if (!isset($_SESSION['username'])) {
             <div class="jumbotron">
                 <h1 class="display-4 text-center">Lord of the Pick'em</h1>
                 <p class="lead">Welcome <?php echo $_SESSION['username'] ?>.</p>
-                <hr class="my-4" style>
+
                 <div id="client_time"></div>
                 <div id="week_results"></div>
             </div>
@@ -111,7 +111,7 @@ if (!isset($_SESSION['username'])) {
                        
                     });
 
-                    itemStr += "<div class='row' id='total_wins'>";
+                    itemStr += "<br><div class='row' id='total_wins'>";
                     itemStr += "<div class='col-12 text-center'>";
                     itemStr += "<h2>Total Wins</h2>";
                     itemStr += "</div>";
