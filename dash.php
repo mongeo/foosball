@@ -34,7 +34,7 @@ if (!isset($_SESSION['username'])) {
     </head>
     
     <body class="text-center">
-        <div class="container">
+        <div class="container-fluid">
             <nav>
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
