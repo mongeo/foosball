@@ -1,2 +1,4 @@
 inc/
 .DS_Store
+error_log
+api/error_log

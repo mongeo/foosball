@@ -129,3 +129,18 @@ Stack trace:
 [22-Sep-2021 04:39:14 UTC] PHP Parse error:  syntax error, unexpected string content "", expecting "-" or identifier or variable or number in /home/pccclcykkip4/public_html/foosball/api/leaderboard_stats.php on line 28
 [22-Sep-2021 04:39:18 UTC] PHP Parse error:  syntax error, unexpected string content "", expecting "-" or identifier or variable or number in /home/pccclcykkip4/public_html/foosball/api/leaderboard_stats.php on line 28
 [22-Sep-2021 04:39:32 UTC] PHP Parse error:  syntax error, unexpected string content "", expecting "-" or identifier or variable or number in /home/pccclcykkip4/public_html/foosball/api/leaderboard_stats.php on line 28
+[22-Sep-2021 21:45:24 UTC] PHP Warning:  Undefined array key "username" in /home/pccclcykkip4/public_html/foosball/api/sign_in_process.php on line 10
+[22-Sep-2021 21:45:24 UTC] PHP Warning:  Undefined array key "password" in /home/pccclcykkip4/public_html/foosball/api/sign_in_process.php on line 11
+[23-Sep-2021 21:32:28 UTC] PHP Warning:  Undefined array key "username" in /home/pccclcykkip4/public_html/foosball/api/games_by_week.php on line 7
+[23-Sep-2021 21:32:36 UTC] PHP Warning:  Undefined array key "username" in /home/pccclcykkip4/public_html/foosball/api/pick_team.php on line 9
+[23-Sep-2021 21:32:36 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'username' cannot be null in /home/pccclcykkip4/public_html/foosball/api/pick_team.php:36
+Stack trace:
+#0 /home/pccclcykkip4/public_html/foosball/api/pick_team.php(36): PDOStatement->execute()
+#1 {main}
+  thrown in /home/pccclcykkip4/public_html/foosball/api/pick_team.php on line 36
+[23-Sep-2021 21:32:45 UTC] PHP Warning:  Undefined array key "username" in /home/pccclcykkip4/public_html/foosball/api/pick_team.php on line 9
+[23-Sep-2021 21:32:45 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'username' cannot be null in /home/pccclcykkip4/public_html/foosball/api/pick_team.php:36
+Stack trace:
+#0 /home/pccclcykkip4/public_html/foosball/api/pick_team.php(36): PDOStatement->execute()
+#1 {main}
+  thrown in /home/pccclcykkip4/public_html/foosball/api/pick_team.php on line 36
