@@ -218,6 +218,16 @@ if (!isset($_SESSION['username'])) {
                             //Results row
                             itemStr += "<div class='row mt-3'>";
 
+                            //Game spread
+                            itemStr += "<div class='col-12 text-center'>";
+                            itemStr += "<b>Game Spread:</b> <span id='";
+                            itemStr += key1['game_spread'];
+                            itemStr += "'>";
+                            itemStr += key1['game_spread'];
+                            itemStr += "</span>";
+                            itemStr += "</div>";
+                            //End Game spread
+
                             //Users current pick col
                             itemStr += "<div class='col-12 text-center'>";
                             itemStr += "<b>Your pick:</b> <span id='";
