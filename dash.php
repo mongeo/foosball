@@ -62,9 +62,9 @@ if (!isset($_SESSION['username'])) {
                         <select name="choose_week_drop" id="choose_week_drop">
                             <option value="Week 1">Week 1</option>
                             <option value="Week 2">Week 2</option>
-                            <option value="Week 3" selected>Week 3</option>
+                            <option value="Week 3">Week 3</option>
                             <option value="Week 4">Week 4</option>
-                            <option value="Week 5">Week 5</option>
+                            <option value="Week 5" selected>Week 5</option>
                             <option value="Week 6">Week 6</option>
                             <option value="Week 7">Week 7</option>
                             <option value="Week 8">Week 8</option>
