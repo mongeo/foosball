@@ -43,6 +43,9 @@ if (!isset($_SESSION['username'])) {
                         <u><a class="nav-link" href="dash.php">Dashboard</a></u>
                     </li>
                     <li class="nav-item">
+                        <u><a class="nav-link" href="head2head.php">Head2Head</a></u>
+                    </li>
+                    <li class="nav-item">
                         <u><a class="nav-link disabled" href="#">Leaderboard</a></u>
                     </li>
                     <li class="nav-item">
