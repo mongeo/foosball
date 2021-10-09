@@ -81,7 +81,9 @@ if (!isset($_SESSION['username'])) {
                     </form>
                     <br>
                 </div>
-                <div id="week_msg">Have suggestions for new features or comments? Click <a href="https://forms.gle/tjxVBs3nAuRtd7aY6" target="_blank">here</a>.</div>
+                <div id="week_msg">Game spread details updated from <a href="https://www.sportingnews.com/us/nfl/news/nfl-odds-lines-spreads-week-5/sag17gqc8v5f1ak07hdbh0c2o" target="_blank">sportingnews.com</a>, on 10/7/21.<br>Game wins will be updated no later than 10/13/21 @ 10PM PST.<br>(<a href="https://www.youtube.com/watch?v=x3feHj30r_Q" target="_blank">More about spreads</a>)
+                
+                </div>
             </div>
             <div id="itemView" class="text-left"></div>
             <br>
@@ -220,7 +222,7 @@ if (!isset($_SESSION['username'])) {
 
                             //Game spread
                             itemStr += "<div class='col-12 text-center'>";
-                            itemStr += "<b>Game Spread:</b> <span id='";
+                            itemStr += "<b>Game spread:</b> <span id='";
                             itemStr += key1['game_spread'];
                             itemStr += "'>";
                             itemStr += key1['game_spread'];
