@@ -56,32 +56,6 @@ if (!isset($_SESSION['username'])) {
             <div class="jumbotron">
                 <h1 class="display-4 text-center">Lord of the Pick'em</h1>
                 <p class="lead">Welcome <?php echo $_SESSION['username'] ?>.</p>
-                <hr class="my-4" style>
-
-                <div class="text-center">
-                    <form id="choose_week">
-                        <select name="choose_week_drop" id="choose_week_drop">
-                            <option value="Week 1">Week 1</option>
-                            <option value="Week 2">Week 2</option>
-                            <option value="Week 3">Week 3</option>
-                            <option value="Week 4">Week 4</option>
-                            <option value="Week 5" selected>Week 5</option>
-                            <option value="Week 6">Week 6</option>
-                            <option value="Week 7">Week 7</option>
-                            <option value="Week 8">Week 8</option>
-                            <option value="Week 9">Week 9</option>
-                            <option value="Week 10">Week 10</option>
-                            <option value="Week 11">Week 11</option>
-                            <option value="Week 12">Week 12</option>
-                            <option value="Week 13">Week 13</option>
-                            <option value="Week 14">Week 14</option>
-                            <option value="Week 15">Week 15</option>
-                            <option value="Week 16">Week 16</option>
-                            <option value="Week 17">Week 17</option>
-                        </select>
-                    </form>
-                    <br>
-                </div>
             </div>
             <div id="itemView" class="text-left"></div>
             <br>
@@ -95,49 +69,42 @@ if (!isset($_SESSION['username'])) {
     <script>
         //TODO:
         $(function() {
-            $("#choose_week_drop").change(function() {
-                var selection = $("#choose_week_drop").val().split(" ");
-                var week_int = selection[1];
-                selected_week = week_int;
-                //console.log(selected_week);
-                $.ajax({
-                    method: "GET",
-                    url: "api/head2head_by_week.php",
-                    dataType: "json",
-                    data: {
-                        "week": week_int
-                    },  
-                    success: function(data, status) {
-                        var itemStr = "";
+            $.ajax({
+                method: "GET",
+                url: "api/head2head_by_week.php",
+                dataType: "json",
+                data: {
+                },  
+                success: function(data, status) {
+                    var itemStr = "";
 
+                    itemStr += "<div class='row border-bottom'>";
+
+                    //Date col
+                    itemStr += "<div class='col-6 text-left'><b>Team</b>";
+                    itemStr += "</div>";
+                    itemStr += "<div class='col-6 text-center'><b>Number of picks</b>";
+                    itemStr += "</div>";
+                    //EndDate col   
+
+                    itemStr += "</div>"; 
+
+                    data["head2head"].forEach(function(key) {
                         itemStr += "<div class='row border-bottom'>";
 
                         //Date col
-                        itemStr += "<div class='col-6 text-left'><b>Team</b>";
+                        itemStr += "<div class='col-6 text-left'>" + key.pick;
                         itemStr += "</div>";
-                        itemStr += "<div class='col-6 text-center'><b>Number of picks</b>";
+                        itemStr += "<div class='col-6 text-center'>" + key.count_num;
                         itemStr += "</div>";
                         //EndDate col   
 
-                        itemStr += "</div>"; 
-
-                        data["head2head"].forEach(function(key) {
-                            itemStr += "<div class='row border-bottom'>";
-
-                            //Date col
-                            itemStr += "<div class='col-6 text-left'>" + key.pick;
-                            itemStr += "</div>";
-                            itemStr += "<div class='col-6 text-center'>" + key.count_num;
-                            itemStr += "</div>";
-                            //EndDate col   
-
-                            itemStr += "</div>";                     
-                           
-                        });
-                        $("#itemView").html(itemStr); 
-                    }
-                }); //ajax 
-            }).triggerHandler('change');
+                        itemStr += "</div>";                     
+                       
+                    });
+                    $("#itemView").html(itemStr); 
+                }
+            }); //ajax 
         });
     </script>
 </html>
