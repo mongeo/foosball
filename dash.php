@@ -67,8 +67,8 @@ if (!isset($_SESSION['username'])) {
                             <option value="Week 2">Week 2</option>
                             <option value="Week 3">Week 3</option>
                             <option value="Week 4">Week 4</option>
-                            <option value="Week 5" selected>Week 5</option>
-                            <option value="Week 6">Week 6</option>
+                            <option value="Week 5" >Week 5</option>
+                            <option value="Week 6" selected>Week 6</option>
                             <option value="Week 7">Week 7</option>
                             <option value="Week 8">Week 8</option>
                             <option value="Week 9">Week 9</option>
@@ -84,7 +84,7 @@ if (!isset($_SESSION['username'])) {
                     </form>
                     <br>
                 </div>
-                <div id="week_msg">Game spread details updated from <a href="https://www.sportingnews.com/us/nfl/news/nfl-odds-lines-spreads-week-5/sag17gqc8v5f1ak07hdbh0c2o" target="_blank">sportingnews.com</a>, on 10/7/21.<br>Game wins will be updated no later than 10/13/21 @ 10PM PST.<br>(<a href="https://www.youtube.com/watch?v=x3feHj30r_Q" target="_blank">More about spreads</a>)
+                <div id="week_msg">Game wins for week 6 will be updated no later than 10/20/21 @ 10PM PST.<br>Game spread details updated from <a href="https://www.sportingnews.com/us/nfl/news/nfl-odds-lines-spreads-week-6/onbmyo5rfm4d1668du84h7obw" target="_blank">sportingnews.com</a> on 10/13/21.<br><a href="https://www.youtube.com/watch?v=x3feHj30r_Q" target="_blank">(More about spreads)</a>
                 
                 </div>
             </div>

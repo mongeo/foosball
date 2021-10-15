@@ -56,6 +56,8 @@ if (!isset($_SESSION['username'])) {
             <div class="jumbotron">
                 <h1 class="display-4 text-center">Lord of the Pick'em</h1>
                 <p class="lead">Welcome <?php echo $_SESSION['username'] ?>.</p>
+                
+                <p>The number of picks for each team will be displayed below when the game is scheduled to start.</p>
             </div>
             <div id="itemView" class="text-left"></div>
             <br>
