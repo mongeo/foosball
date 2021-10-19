@@ -67,9 +67,9 @@ if (!isset($_SESSION['username'])) {
                             <option value="Week 2">Week 2</option>
                             <option value="Week 3">Week 3</option>
                             <option value="Week 4">Week 4</option>
-                            <option value="Week 5" >Week 5</option>
-                            <option value="Week 6" selected>Week 6</option>
-                            <option value="Week 7">Week 7</option>
+                            <option value="Week 5">Week 5</option>
+                            <option value="Week 6">Week 6</option>
+                            <option value="Week 7" selected>Week 7</option>
                             <option value="Week 8">Week 8</option>
                             <option value="Week 9">Week 9</option>
                             <option value="Week 10">Week 10</option>
