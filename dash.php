@@ -172,7 +172,8 @@ if (!isset($_SESSION['username'])) {
                                 if (value.team_id === key1['home_team']){
                                     itemStr += "<br><b>Home</b></br>";
                                     itemStr += "<img src='" + value.icon_url +"' height='75'><br>";
-                                    itemStr += value.full_name + " (" + value.team_id + ")<br><br>";
+                                    itemStr += value.full_name + " (" + value.team_id + ")<br>";
+                                    itemStr += value.record + "<br><br>";
                                     //console.log("cTime: " + cTime + " | databaseTime: " + key1['date_time']);
                                     if (cTime < key1['date_time']){
                                         itemStr += "<button class='btn btn-primary' onclick=\"pickTeam("; 
@@ -197,7 +198,8 @@ if (!isset($_SESSION['username'])) {
                                 if (value.team_id === key1['away_team']){
                                     itemStr += "<br><b>Away</b></br>";
                                     itemStr += "<img src='" + value.icon_url +"' height='75'><br>";
-                                    itemStr += value.full_name + " (" + value.team_id + ")<br><br>";
+                                    itemStr += value.full_name + " (" + value.team_id + ")<br>";
+                                    itemStr += value.record + "<br><br>";
                                     if (cTime < key1['date_time']){
                                         itemStr += "<button class='btn btn-primary' onclick=\"pickTeam("; 
                                         itemStr += "'" + key1['game_id'] + "', ";
