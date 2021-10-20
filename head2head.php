@@ -57,14 +57,14 @@ if (!isset($_SESSION['username'])) {
     </head>
     
     <body class="text-center">
-        <div class="container-fluid">
+        <div class="container">
             <nav>
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
-                        <u><a class="nav-link" href="dash.php">Dashboard</a></u>
+                        <u><a class="nav-link" href="dash.php">Pick</a></u>
                     </li>
                     <li class="nav-item">
-                        <u><a class="nav-link disabled" href="#">Head2Head</a></u>
+                        <u><a class="nav-link disabled" href="#">Matches</a></u>
                     </li>
                     <li class="nav-item">
                         <u><a class="nav-link" href="leaderboard.php">Leaderboard</a></u>
@@ -78,7 +78,7 @@ if (!isset($_SESSION['username'])) {
                 <h1 class="display-4 text-center">Lord of the Pick'em</h1>
                 <p class="lead">Welcome <?php echo $_SESSION['username'] ?>.</p>
                 
-                <p>The number of picks for each team will be displayed below when the game is scheduled to start.</p>
+                <p>Games in play will be displayed below showing which users picked which team.</p>
             </div>
             <div id="itemView" class="text-left"></div>
 

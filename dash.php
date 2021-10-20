@@ -36,14 +36,14 @@ if (!isset($_SESSION['username'])) {
     </head>
     
     <body class="text-center">
-        <div class="container-fluid">
+        <div class="container">
             <nav>
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
-                        <u><a class="nav-link disabled" href="#">Dashboard</a></u>
+                        <u><a class="nav-link disabled" href="#">Pick</a></u>
                     </li>
                     <li class="nav-item">
-                        <u><a class="nav-link" href="head2head.php">Head2Head</a></u>
+                        <u><a class="nav-link" href="head2head.php">Matches</a></u>
                     </li>
                     <li class="nav-item">
                         <u><a class="nav-link" href="leaderboard.php">Leaderboard</a></u>
