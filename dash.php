@@ -84,7 +84,7 @@ if (!isset($_SESSION['username'])) {
                     </form>
                     <br>
                 </div>
-                <div id="week_msg">Game wins for week 6 will be updated no later than 10/20/21 @ 10PM PST.<br>Game spread details updated from <a href="https://www.sportingnews.com/us/nfl/news/nfl-odds-lines-spreads-week-6/onbmyo5rfm4d1668du84h7obw" target="_blank">sportingnews.com</a> on 10/13/21.<br><a href="https://www.youtube.com/watch?v=x3feHj30r_Q" target="_blank">(More about spreads)</a>
+                <div id="week_msg">Game wins for week 7 will be updated no later than 10/27/21 @ 10PM PST.<br>Game spread details updated from <a href="https://www.sportingnews.com/us/nfl/news/nfl-odds-lines-spreads-week-7/paowyy0tqimu1mjiopkcbxcd7" target="_blank">sportingnews.com</a> on 10/19/21.<br><a href="https://www.youtube.com/watch?v=x3feHj30r_Q" target="_blank">(More about spreads)</a>
                 
                 </div>
             </div>
@@ -117,10 +117,10 @@ if (!isset($_SESSION['username'])) {
                 success: function(data, status) {
                     $("#"+ gameID + "_pick").html(data);
                     if (gamePick === homeTeam){
-                        $("#"+gameID+"_home").css({"border-style":"solid","border-color":"#339955"})
+                        $("#"+gameID+"_home").css({"border-style":"solid","border-color":"#007bff"})
                         $("#"+gameID+"_away").css({"border-style":"none"})
                     } else {
-                        $("#"+gameID+"_away").css({"border-style":"solid","border-color":"#339955"})
+                        $("#"+gameID+"_away").css({"border-style":"solid","border-color":"#007bff"})
                         $("#"+gameID+"_home").css({"border-style":"none"})
                     }
                 }
@@ -269,10 +269,10 @@ if (!isset($_SESSION['username'])) {
                         $("#itemView").html(itemStr); 
                         $.each(data["user_games"], function( key2, value ){
                             if (value.home_team === value.pick){
-                                $("#"+value.game_key+"_home").css({"border-style":"solid","border-color":"#339955"});
+                                $("#"+value.game_key+"_home").css({"border-style":"solid","border-color":"#007bff"});
                                 $("#"+value.game_key+"_away").css({"border-style":"none"});
                             } else {
-                                $("#"+value.game_key+"_away").css({"border-style":"solid","border-color":"#339955"});
+                                $("#"+value.game_key+"_away").css({"border-style":"solid","border-color":"#007bff"});
                                 $("#"+value.game_key+"_home").css({"border-style":"none"});
                             }
                         });
