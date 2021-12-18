@@ -31,7 +31,7 @@ if (!isset($_SESSION['username'])) {
                 font-size: 16px;
             }
         </style>
-        <title>Welcome</title>
+        <title>lordofthepickem.com | Leaderboard</title>
 
     </head>
     

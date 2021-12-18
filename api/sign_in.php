@@ -23,7 +23,7 @@ if (isset($_SESSION['username'])) {
                 font-family: "Merriweather";
             }
         </style>
-        <title>Sign-in</title>
+        <title>lordofthepickem.com | Sign-in</title>
     </head>
     
     <body class="text-center">

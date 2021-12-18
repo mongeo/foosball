@@ -24,27 +24,6 @@ if (!isset($_SESSION['username'])) {
             var cTime = cur_time.tz('America/New_York').format('YYYY-MM-DD HH:MM:SS');
             var cur_time_est = cur_time.tz('America/New_York').format('ddd. MM/DD/YYYY h:mm:ss A');
             var selected_week = 1;
-            class Game {
-                constructor(gameKey, homeName, awayName, homeImg, awayImg, pick, userName){
-                    this.gameKey = gameKey;
-                    this.homeName = homeName;
-                    this.awayName = awayName;
-                    this.homeImg = homeImg;
-                    this.awayImg = awayImg;
-                    this.homePick = [];
-                    this.awayPick = [];
-                    this.addPick(pick, userName);
-                }
-                addPick(pickName, userName){
-                    if (pickName === this.homeName){
-                        this.homePick.push(userName);
-                    } else {
-                        this.awayPick.push(userName);
-                    }
-
-                }
-            }
-            let gamesArray = [];
         </script>
         <style>
             body {
@@ -52,7 +31,7 @@ if (!isset($_SESSION['username'])) {
                 font-size: 16px;
             }
         </style>
-        <title>Welcome</title>
+        <title>lordofthepickem.com | Matches</title>
 
     </head>
     
@@ -78,13 +57,35 @@ if (!isset($_SESSION['username'])) {
                 <h1 class="display-4 text-center">Lord of the Pick'em</h1>
                 <p class="lead">Welcome <?php echo $_SESSION['username'] ?>.</p>
                 
-                <p>Games in play will be displayed below showing which users picked which team.</p>
+                
+               <div class="text-center">
+                    <form id="choose_week">
+                        <select name="choose_week_drop" id="choose_week_drop">
+                            <option value="Week 1">Week 1</option>
+                            <option value="Week 2">Week 2</option>
+                            <option value="Week 3">Week 3</option>
+                            <option value="Week 4">Week 4</option>
+                            <option value="Week 5">Week 5</option>
+                            <option value="Week 6">Week 6</option>
+                            <option value="Week 7">Week 7</option>
+                            <option value="Week 8">Week 8</option>
+                            <option value="Week 9">Week 9</option>
+                            <option value="Week 10">Week 10</option>
+                            <option value="Week 11">Week 11</option>
+                            <option value="Week 12">Week 12</option>
+                            <option value="Week 13">Week 13</option>
+                            <option value="Week 14">Week 14</option>
+                            <option value="Week 15" selected>Week 15</option>
+                            <option value="Week 16">Week 16</option>
+                            <option value="Week 17">Week 17</option>
+                            <option value="Week 18">Week 18</option>
+                        </select>
+                    </form>
+                    <br>
+                    <p>User picks shown below for previous and current games.</p>
+                </div>
             </div>
             <div id="itemView" class="text-left"></div>
-
-            <br>
-            <div id="fun" class="text-center"><img src="https://c.tenor.com/nTfGANr9MlAAAAAi/lord-of-the-rings-my-precious.gif" width="15%">
-            </div>
             <br>
             <div id="help"><p>For questions or comments contact: <a href="mailto:nfl_admin@lordofthepickem.com">nfl_admin@lordofthepickem.com</a>.</p></div>
         </div><!--container-->
@@ -93,11 +94,37 @@ if (!isset($_SESSION['username'])) {
     <script>
         //TODO:
         $(function() {
+            $("#choose_week_drop").change(function() {
+            class Game {
+                constructor(gameKey, homeName, awayName, homeImg, awayImg, pick, userName){
+                    this.gameKey = gameKey;
+                    this.homeName = homeName;
+                    this.awayName = awayName;
+                    this.homeImg = homeImg;
+                    this.awayImg = awayImg;
+                    this.homePick = [];
+                    this.awayPick = [];
+                    this.addPick(pick, userName);
+                }
+                addPick(pickName, userName){
+                    if (pickName === this.homeName){
+                        this.homePick.push(userName);
+                    } else {
+                        this.awayPick.push(userName);
+                    }
+
+                }
+            }
+            let gamesArray = [];
+            var selection = $("#choose_week_drop").val().split(" ");
+            var week_int = selection[1];
+            selected_week = week_int;
             $.ajax({
                 method: "GET",
                 url: "api/head2head_now.php",
                 dataType: "json",
                 data: {
+                    "week": week_int
                 },  
                 success: function(data, status) {
                     console.log(data);
@@ -166,6 +193,7 @@ if (!isset($_SESSION['username'])) {
                     $("#itemView").html(itemStr);
                 }
             }); //ajax 
+            }).triggerHandler('change');
         });
     </script>
 </html>

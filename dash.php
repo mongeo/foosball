@@ -21,7 +21,7 @@ if (!isset($_SESSION['username'])) {
         <script>
             //var cur_time = moment().format("ddd. MM/DD/YYYY @ h:mm A");
             var cur_time = moment();
-            var cTime = cur_time.tz('America/New_York').format('YYYY-MM-DD HH:MM:SS');
+            var cTime = cur_time.tz('America/New_York').format('YYYY-MM-DD HH:mm:ss');
             var cur_time_est = cur_time.tz('America/New_York').format('ddd. MM/DD/YYYY h:mm:ss A');
             var selected_week = 1;
         </script>
@@ -31,7 +31,7 @@ if (!isset($_SESSION['username'])) {
                 font-size: 16px;
             }
         </style>
-        <title>Welcome</title>
+        <title>lordofthepickem.com | Pick</title>
 
     </head>
     
@@ -69,7 +69,7 @@ if (!isset($_SESSION['username'])) {
                             <option value="Week 4">Week 4</option>
                             <option value="Week 5">Week 5</option>
                             <option value="Week 6">Week 6</option>
-                            <option value="Week 7" selected>Week 7</option>
+                            <option value="Week 7">Week 7</option>
                             <option value="Week 8">Week 8</option>
                             <option value="Week 9">Week 9</option>
                             <option value="Week 10">Week 10</option>
@@ -77,21 +77,20 @@ if (!isset($_SESSION['username'])) {
                             <option value="Week 12">Week 12</option>
                             <option value="Week 13">Week 13</option>
                             <option value="Week 14">Week 14</option>
-                            <option value="Week 15">Week 15</option>
+                            <option value="Week 15" selected>Week 15</option>
                             <option value="Week 16">Week 16</option>
                             <option value="Week 17">Week 17</option>
+                            <option value="Week 18">Week 18</option>
                         </select>
                     </form>
                     <br>
                 </div>
-                <div id="week_msg">Game wins for week 7 will be updated no later than 10/27/21 @ 10PM PST.<br>Game spread details updated from <a href="https://www.sportingnews.com/us/nfl/news/nfl-odds-lines-spreads-week-7/paowyy0tqimu1mjiopkcbxcd7" target="_blank">sportingnews.com</a> on 10/19/21.<br><a href="https://www.youtube.com/watch?v=x3feHj30r_Q" target="_blank">(More about spreads)</a>
-                
+                <div id="week_msg">
+                    <a href="https://www.google.com/search?q=nfl+spreads" target="_blank">Spreads</a> | 
+                    <a href="https://www.google.com/search?q=nfl+standings" target="_blank">Standings</a>
                 </div>
             </div>
             <div id="itemView" class="text-left"></div>
-            <br>
-            <div id="fun" class="text-center"><img src="https://c.tenor.com/nTfGANr9MlAAAAAi/lord-of-the-rings-my-precious.gif" width="15%">
-            </div>
             <br>
             <div id="help"><p>For questions or comments contact: <a href="mailto:nfl_admin@lordofthepickem.com">nfl_admin@lordofthepickem.com</a>.</p></div>
         </div><!--container-->
@@ -172,9 +171,12 @@ if (!isset($_SESSION['username'])) {
                                 if (value.team_id === key1['home_team']){
                                     itemStr += "<br><b>Home</b></br>";
                                     itemStr += "<img src='" + value.icon_url +"' height='75'><br>";
-                                    itemStr += value.full_name + " (" + value.team_id + ")<br>";
-                                    itemStr += value.record + "<br><br>";
-                                    //console.log("cTime: " + cTime + " | databaseTime: " + key1['date_time']);
+                                    itemStr += value.full_name + " (" + value.team_id + ")<br><br>";
+                                    /*itemStr += value.record + "<br><br>";*/
+                                    console.log("cTime: " + cTime + " | databaseTime: " + key1['date_time']);
+                                    if (cTime < key1['date_time']){
+                                        console.log("True");
+                                    }
                                     if (cTime < key1['date_time']){
                                         itemStr += "<button class='btn btn-primary' onclick=\"pickTeam("; 
                                         itemStr += "'" + key1['game_id'] + "', ";
@@ -198,8 +200,8 @@ if (!isset($_SESSION['username'])) {
                                 if (value.team_id === key1['away_team']){
                                     itemStr += "<br><b>Away</b></br>";
                                     itemStr += "<img src='" + value.icon_url +"' height='75'><br>";
-                                    itemStr += value.full_name + " (" + value.team_id + ")<br>";
-                                    itemStr += value.record + "<br><br>";
+                                    itemStr += value.full_name + " (" + value.team_id + ")<br><br>";
+                                    /*itemStr += value.record + "<br><br>";*/
                                     if (cTime < key1['date_time']){
                                         itemStr += "<button class='btn btn-primary' onclick=\"pickTeam("; 
                                         itemStr += "'" + key1['game_id'] + "', ";
@@ -226,6 +228,7 @@ if (!isset($_SESSION['username'])) {
                             itemStr += "<div class='row mt-3'>";
 
                             //Game spread
+                            /*
                             itemStr += "<div class='col-12 text-center'>";
                             itemStr += "<b>Game spread:</b> <span id='";
                             itemStr += key1['game_spread'];
@@ -233,6 +236,7 @@ if (!isset($_SESSION['username'])) {
                             itemStr += key1['game_spread'];
                             itemStr += "</span>";
                             itemStr += "</div>";
+                            */
                             //End Game spread
 
                             //Users current pick col
